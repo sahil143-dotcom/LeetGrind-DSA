@@ -9,7 +9,7 @@ public:
             int width = right - left;
             maxArea = max(maxArea, width* min(height[left], height[right]));
 
-            if(height[left]<height[right]){
+            if(height[left]<=height[right]){
                 left++;
             }
             else{
