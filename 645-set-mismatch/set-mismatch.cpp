@@ -1,25 +1,25 @@
-
-
 class Solution {
 public:
-    std::vector<int> findErrorNums(std::vector<int>& nums) {
-       int n=nums.size();
-       int actual_sum = n*(n+1)/2;
-       int array_sum = 0;
-       int unique_sum = 0;
-       unordered_set<int>s(nums.begin(),nums.end());
+    vector<int> findErrorNums(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        int duplicate;
 
-       for(int a:nums){
-        array_sum+=a;
-       }
+        for(int i = 1; i < n; i++){
+            if(nums[i] == nums[i-1]){
+                duplicate = nums[i];
+            }
+        }
+        int expectedSum = n*(n+1)/2;
+        int actualSum = 0;
+        for(int i = 0; i < n; i++){
+            actualSum += nums[i];
+        }
 
-       for(int a:s){
-        unique_sum +=a;
-       }
-       int missing = actual_sum-unique_sum;
-       int duplicate = array_sum-unique_sum;
+        int missing = expectedSum - actualSum + duplicate;
 
-       return {duplicate, missing};
+        return {duplicate, missing};
+
+        
     }
 };
-
