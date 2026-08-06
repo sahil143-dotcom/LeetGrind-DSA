@@ -3,23 +3,23 @@
 class Solution {
 public:
     std::vector<int> findErrorNums(std::vector<int>& nums) {
-        int dup = -1, missing = -1;
-        
-        for (int i = 1; i <= nums.size(); i++) {
-            int count = 0;
-            for (int j = 0; j < nums.size(); j++) {
-                if (nums[j] == i) {
-                    count++;
-                }
-            }
-            if (count == 2) {
-                dup = i;
-            } else if (count == 0) {
-                missing = i;
-            }
-        }
-        
-        return {dup, missing};
+       int n=nums.size();
+       int actual_sum = n*(n+1)/2;
+       int array_sum = 0;
+       int unique_sum = 0;
+       unordered_set<int>s(nums.begin(),nums.end());
+
+       for(int a:nums){
+        array_sum+=a;
+       }
+
+       for(int a:s){
+        unique_sum +=a;
+       }
+       int missing = actual_sum-unique_sum;
+       int duplicate = array_sum-unique_sum;
+
+       return {duplicate, missing};
     }
 };
 
