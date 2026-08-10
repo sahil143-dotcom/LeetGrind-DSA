@@ -5,8 +5,8 @@ public:
         int end = s.size()-1;
         while(start<=end){
             char temp = s[start];
-            s[start]=s[end];
-            s[end]=temp;
+            s[start] = s[end];
+            s[end] = temp;
 
             start++;
             end--;
